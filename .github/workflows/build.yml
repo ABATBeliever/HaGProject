@@ -1,4 +1,4 @@
-name: HSP At Github(HAG) のビルド
+name: HSP At Github(HAG) のビルド v0.11b
 
 on:
   workflow_dispatch:
@@ -13,6 +13,7 @@ jobs:
       - name: ビルド
         run: |
           cd ${{ github.workspace }}/hsp36
+          ./ginger.exe -V
           ./ginger.exe --hsp ${{ github.workspace }}/hsp36/ build --release ${{ github.workspace }}/projects/index.hsp
 
       - name: ビルド結果物を移送
