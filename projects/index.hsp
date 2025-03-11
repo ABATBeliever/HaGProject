@@ -1,4 +1,5 @@
 #include "hsp3utf.as"
+#include "second.hsp"
 screen 0,640,480
 title "HaGプロジェクトのサンプル"
 mes "THIS FILE IS ENCODED IN UTF-8 UTF-8でこのファイルはエンコードされています"
