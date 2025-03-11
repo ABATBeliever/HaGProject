@@ -1,0 +1,35 @@
+name: HSP At Github(HAG) のビルド
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: リポジトリをチェックアウト
+        uses: actions/checkout@v4
+
+      - name: ビルド
+        run: |
+          cd ${{ github.workspace }}/hsp36
+          ./ginger.exe build --release ${{ github.workspace }}/projects/index.hsp
+
+      - name: ビルド結果物を移送
+        run: |
+          cd ../
+          Get-ChildItem -Path ${{ github.workspace }} -Recurse -Filter "hsptmp.exe" -ErrorAction SilentlyContinue
+          Copy-Item -Path "${{ github.workspace }}/hsp36/hsptmp.exe" -Destination "${{ github.workspace }}/build/Software.exe"
+          Get-ChildItem -Path ${{ github.workspace }} -Recurse -Filter "Software.exe" -ErrorAction SilentlyContinue
+
+      - name: /build フォルダを ZIP 圧縮
+        run: |
+          dir ${{ github.workspace }}/build/
+          $zipPath = "${{ github.workspace }}/build.zip"
+          Compress-Archive -Path "${{ github.workspace }}/build/*" -DestinationPath $zipPath
+
+      - name: アップロード、最終処理
+        uses: actions/upload-artifact@v4
+        with:
+          name: Build-Complete
+          path: ${{ github.workspace }}/build.zip
