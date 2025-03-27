@@ -1,0 +1,23 @@
+#epack "bin"
+#include "user32.as"
+#include "kernel32.as"
+#include "mod_wv2s.hsp"
+
+	restart = 0
+	msg = "%s の読み込みに失敗しました\nカレントフォルダに作成しますか？"
+	if ( varptr(WV2Env) == 0 ){
+		dialog strf(msg, "wv2s.dll"), 2, "確認"
+		if ( stat != 6 ){ end }
+		bcopy "bin","wv2s.dll"
+		restart++
+		cur = dir_cur
+	}
+
+	if ( restart ){
+		dialog "アプリを再起動します。\nよろしいですか？", 2, "確認"
+		if ( stat != 6 ){ end }
+		GetCommandLineW
+		dupptr dp, stat, 1024, 2
+		exec cnvwtos(dp)
+		end
+	}
