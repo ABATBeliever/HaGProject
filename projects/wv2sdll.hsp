@@ -1,4 +1,4 @@
-#epack "bin"
+#epack "./bin"
 #include "user32.as"
 #include "kernel32.as"
 #include "mod_wv2s.hsp"
