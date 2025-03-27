@@ -1,4 +1,4 @@
-name: HSP At Github(HAG) のビルド v0.11b
+name: HSP At Github(HAG) のビルド v0.11c
 
 on:
   workflow_dispatch:
