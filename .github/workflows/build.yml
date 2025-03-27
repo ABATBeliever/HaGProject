@@ -20,14 +20,14 @@ jobs:
         run: |
           cd ../
           Get-ChildItem -Path ${{ github.workspace }} -Recurse -Filter "hsptmp.exe" -ErrorAction SilentlyContinue
-          Copy-Item -Path "${{ github.workspace }}/hsp36/hsptmp.exe" -Destination "${{ github.workspace }}/build/Software.exe"
+          Copy-Item -Path "${{ github.workspace }}/hsp36/hsptmp.exe" -Destination "${{ github.workspace }}/vandle/Software.exe"
           Get-ChildItem -Path ${{ github.workspace }} -Recurse -Filter "Software.exe" -ErrorAction SilentlyContinue
 
       - name: /build フォルダを ZIP 圧縮
         run: |
-          dir ${{ github.workspace }}/build/
+          dir ${{ github.workspace }}/vandle/
           $zipPath = "${{ github.workspace }}/build.zip"
-          Compress-Archive -Path "${{ github.workspace }}/build/*" -DestinationPath $zipPath
+          Compress-Archive -Path "${{ github.workspace }}/vandle/*" -DestinationPath $zipPath
 
       - name: アップロード、最終処理
         uses: actions/upload-artifact@v4
