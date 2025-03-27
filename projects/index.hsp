@@ -82,7 +82,7 @@
 	if stat == 0 : objenable idBtn_goForward, p1
 	return
 *About
-	dialog AppName+"\nVer.1.0 UTF-8",AppName
+	dialog AppName+" Ver.1.0 UTF-8"
 	return
 /* ---------------------------------------------------------
 	Label Event
