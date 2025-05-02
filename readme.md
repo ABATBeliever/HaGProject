@@ -1,6 +1,12 @@
-# HSP at Github (HaG) for 3.6
+# HSP at Github (HaG) for 3.6 [Archived]
 
 HaGはHSPのファイルのビルドをGithub上で行うシステムです。
+
+# 重要 開発終了
+
+https://github.com/onitama/OpenHSP
+
+HSP言語公式がGithubActionをサポートしたため、HaGは開発を終了します。
 
 ## 動作条件
 
